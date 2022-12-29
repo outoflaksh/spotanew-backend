@@ -1,4 +1,4 @@
 fastapi[all]
 requests
 python-dotenv
-redis-py
+redis
