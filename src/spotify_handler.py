@@ -33,6 +33,7 @@ def get_spotify_token() -> str:
     """
     Retrieve a Spotify access token
     """
+
     redis_client = redis.Redis()
     access_token = redis_client.get("spotify_access_token")
 
