@@ -2,4 +2,5 @@
 
 RUN_PORT=${PORT:-8000}
 
-uvicorn src.api:app --host '0.0.0.0' --port ${RUN_PORT}
+redis-server --daemonize yes
+gunicorn -k uvicorn.workers.UvicornWorker src.api:app -b '0.0.0.0':${RUN_PORT}
