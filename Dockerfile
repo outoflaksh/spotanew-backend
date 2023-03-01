@@ -13,7 +13,7 @@ COPY . /app
 # Install the required Python packages
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port 5000 for the FastAPI app and 6379 for Redis
+# Expose port 8000 for the FastAPI app and 6379 for Redis
 EXPOSE 8000 6379
 
 # Set the entrypoint to start the app
