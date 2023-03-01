@@ -80,15 +80,17 @@ def get_random_song() -> dict:
             "Content-Type": "application/json",
             "Authorization": f"Bearer {ACCESS_TOKEN}",
         }
+        try:
+            response = requests.get(PLAYIST_URL, headers=headers)
 
-        response = requests.get(PLAYIST_URL, headers=headers)
+            if response.status_code == 200:
+                random_song_list = response.json()["items"]
 
-        if response.status_code == 200:
-            random_song_list = response.json()["items"]
-
-            redis_key = f"playlist:{random_playlist_id}"
-            redis_client.set(redis_key, json.dumps(random_song_list))
-            redis_client.expire(redis_key, timedelta(days=1))
+                redis_key = f"playlist:{random_playlist_id}"
+                redis_client.set(redis_key, json.dumps(random_song_list))
+                redis_client.expire(redis_key, timedelta(days=1))
+        except:
+            raise Exception("Spotify API unreachable!")
     else:
         print("cache hit")
         random_song_list = json.loads(random_song_list)
