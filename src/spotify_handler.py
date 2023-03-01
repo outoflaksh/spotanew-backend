@@ -89,6 +89,8 @@ def get_random_song() -> dict:
                 redis_key = f"playlist:{random_playlist_id}"
                 redis_client.set(redis_key, json.dumps(random_song_list))
                 redis_client.expire(redis_key, timedelta(days=1))
+            else:
+                raise Exception("Error retrieving results!")
         except:
             raise Exception("Spotify API unreachable!")
     else:
