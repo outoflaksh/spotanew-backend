@@ -35,8 +35,8 @@ def read_random_song():
         random_song_details = get_random_song()
 
         return random_song_details
-    except:
+    except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Sorry, there was an error!",
+            detail=str(e),
         )
