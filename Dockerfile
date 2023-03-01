@@ -17,6 +17,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8000 6379
 
 # Set the entrypoint to start the app
-COPY dev.entrypoint.sh /dev.entrypoint.sh
-RUN chmod +x /dev.entrypoint.sh
-ENTRYPOINT ["/dev.entrypoint.sh"]
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
